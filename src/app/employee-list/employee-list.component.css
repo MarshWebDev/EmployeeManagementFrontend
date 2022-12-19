@@ -2,3 +2,12 @@
     background-color:rgba(102, 97, 91, 0.08);
     cursor: pointer;
 }
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.active {
+    background-color: rgba(82, 195, 255, 0.838);
+}
