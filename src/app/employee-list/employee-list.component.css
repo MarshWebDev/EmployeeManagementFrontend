@@ -1,0 +1,4 @@
+.employee-list:hover {
+    background-color:rgba(102, 97, 91, 0.08);
+    cursor: pointer;
+}
