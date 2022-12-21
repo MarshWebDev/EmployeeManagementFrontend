@@ -4,8 +4,7 @@ import { Employee } from '../model/employee';
 import { EmployeeListService } from './employee-list.service';
 import { Router } from '@angular/router';
 import { Page } from './employee-list-page';
-
-const CACHE_KEY = 'httpRepoCache';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-employee',
@@ -38,11 +37,33 @@ export class EmployeeListComponent implements OnInit {
         )
     }
 
+    //This doesn't work because it is dependent on which page the employee page is on
+    public searchEmployees(key: string): void {
+        console.log(key);
+        const results: Employee[] = [];
+        for (const employee of this.employees) {
+          if (employee.firstName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+          || employee.lastName.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+            results.push(employee);
+          }
+        }
+    
+        this.employees = results;
+        if (results.length === 0 || !key) {
+          this.getEmployees();
+        }
+    }
+    
     public goToPage(pageNumber?: number): void {
         this.getEmployees(pageNumber);
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
-    public goToEmployeeProfile(pageName: string): void {
+    public navigateToPage(pageName: string): void {
         this.router.navigate([`${pageName}`]);
     }
 

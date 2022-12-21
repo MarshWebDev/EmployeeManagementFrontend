@@ -37,12 +37,6 @@
     width: 250px;
 }
 
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-}
-
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
     margin-right: -250px;
@@ -76,6 +70,7 @@
 
 .sidebar-nav li a:hover {
     text-decoration: none;
+    cursor: pointer;
     color: #111;
     background-color: rgba(0, 136, 255, 0.5);
     transition: 0.2s;
@@ -147,4 +142,41 @@ p {
     background-color: #f4f3ef;
     border:0px;
     border-bottom: 1px solid #DDDDDD;
+}
+
+.ui-w-100 {
+    width: 100px !important;
+    height: auto;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(24,28,33,0.012);
+}
+
+.user-view-table td:first-child {
+    width: 9rem;
+}
+.user-view-table td {
+    padding-right: 0;
+    padding-left: 0;
+    border: 0;
+}
+
+.text-light {
+    color: #babbbc !important;
+}
+
+.card .row-bordered>[class*=" col-"]::after {
+    border-color: rgba(24,28,33,0.075);
+}    
+
+.text-xlarge {
+    font-size: 170% !important;
+}
+
+#content-wrapper {
+    width: 84%;
+    position: absolute;
+    padding-top: 70px;
 }
