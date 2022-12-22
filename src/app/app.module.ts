@@ -13,6 +13,7 @@ import { DepartmentService } from './department/department.service';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { EmployeeAddService } from './employee-add/employee-add.service';
+import { EmployeeService } from './employee/employee.service';
 
 const components = [
   AppComponent,
@@ -25,7 +26,7 @@ const components = [
 @NgModule({
   declarations: [AppComponent, EmployeeListComponent, EmployeeAddComponent, EmployeeComponent, DepartmentComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, CommonModule],
-  providers: [EmployeeListComponent, EmployeeAddService, DepartmentService],
+  providers: [EmployeeListService, EmployeeAddService, DepartmentService, EmployeeService],
   bootstrap: [components]
 })
 export class AppModule { }

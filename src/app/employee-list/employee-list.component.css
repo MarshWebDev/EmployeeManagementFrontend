@@ -8,6 +8,11 @@
     opacity: 0.6;
 }
 
+.hidden {
+    pointer-events: none;
+    opacity: 0;
+}
+
 .active {
     background-color: rgba(82, 195, 255, 0.838);
 }

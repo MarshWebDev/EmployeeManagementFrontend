@@ -1,8 +1,143 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+    integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+    integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div id="wrapper" class="wrapper-content">
     <div id="content-wrapper">
-        <h1>works</h1>
+        <div class="row gutters">
+            <div class="col-lg-2 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name">{{employee?.firstName}} {{employee?.lastName}}</h5>
+                                <h6 class="user-email">ID: {{employee?.id}}</h6>
+                            </div>
+                            <div class="about">
+                                <h5>About</h5>
+                                <p [ngClass]="employee?.department == null ? ' hidden' : ''">
+                                    {{employee?.department?.name}}</p>
+                                <p>{{employee?.position}}</p>
+                                <p>Created {{employee?.createdAt}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <form #editForm="ngForm">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input id="firstName" name="firstName" ngModel="{{employee?.firstName}}"
+                                            type="text" class="form-control" placeholder="Enter first name">
+                                    </div>
+                                </div>
+
+                                <input type="hidden" ngModel="{{employee?.id}}" name="id" id="id">
+                                <input type="hidden" ngModel="{{employee.createdAt}}" name="createdAt" id="createdAt">
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input id="lastName" name="lastName" ngModel="{{employee?.lastName}}"
+                                            type="text" class="form-control" placeholder="Enter first name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input id="email" name="email" ngModel="{{employee?.email}}" type="text"
+                                            class="form-control" placeholder="Enter first name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input id="phone" name="phone" ngModel="{{employee?.phone}}" type="text"
+                                            class="form-control" placeholder="Enter first name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="ssn">Social Security</label>
+                                        <input id="ssn" name="ssn" ngModel="{{employee?.ssn}}" type="text"
+                                            class="form-control" placeholder="Enter first name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary">Work Details</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="department">Department</label>
+                                        <select class="form-control" (change)="ChangeDepartment($event)" [ngClass]="departments.length === 0 ? ' disabled' : ''">
+                                            <option disabled selected value="undefined">{{employee?.department?.name}}</option>
+                                            <option *ngFor="let department of departments" [value]="department.id">
+                                                {{department.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="position">Position</label>
+                                        <input id="position" name="position" ngModel="{{employee?.position}}"
+                                            type="text" class="form-control" placeholder="Enter first name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary">User Settings</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" [checked]="employee?.locked"
+                                            id="locked" name="locked">
+                                        <label class="form-check-label" for="locked">
+                                            Locked
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"></div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" [checked]="employee?.enabled"
+                                            id="locked" name="enabled">
+                                        <label class="form-check-label" for="locked">
+                                            Enabled
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <button class="btn btn-secondary" (click)="navigateToPage('employees')">Cancel</button>
+                                        
+                                        <!-- Current problem: on click, it is not taking in the hidden
+                                        inputs (id and createdAt) and it's creating a brand new employee with no elements -->
+                                        
+                                        <button (click)="updateEmployee(editForm.value)"
+                                            class="btn btn-primary ml-2">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

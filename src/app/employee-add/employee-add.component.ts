@@ -49,7 +49,7 @@ export class EmployeeAddComponent implements OnInit {
     this.router.navigate([`${pageName}`]);
   }
 
-  public onAddEmployee(addForm: NgForm): void {
+  public addEmployee(addForm: NgForm): void {
     document.getElementById('add-employee-form')?.click();
     this.addEmployeeService.addEmployee(addForm.value, this.departmentId).subscribe(
       (response: Employee) => {
